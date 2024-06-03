@@ -1,4 +1,4 @@
-module ALU #(parameter WIDTH=8)
+module ALU #(parameter WIDTH=32)
     (
 	  input [3:0] control,
 	  input CI,

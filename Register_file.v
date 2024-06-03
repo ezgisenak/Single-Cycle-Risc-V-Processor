@@ -1,24 +1,24 @@
 module Register_file #(parameter WIDTH=32)
     (
 	  input clk, write_enable, reset,
-	  input [3:0] Source_select_0, Source_select_1, Debug_Source_select, Destination_select,
-	  input	[WIDTH-1:0] DATA, Reg_15,
+	  input [4:0] Source_select_0, Source_select_1, Debug_Source_select, Destination_select,
+	  input	[WIDTH-1:0] DATA,
 	  output [WIDTH-1:0] out_0, out_1, Debug_out
     );
 
-wire [WIDTH-1:0] Reg_Out [14:0];
-wire [15:0] Reg_enable;
+wire [WIDTH-1:0] Reg_Out [31:0];
+wire [31:0] Reg_enable;
 
 genvar i;
 generate
-    for (i = 0 ; i < 15 ; i = i + 1) begin : registers
+    for (i = 0 ; i < 31 ; i = i + 1) begin : registers
         Register_rsten_neg #(WIDTH) Reg (.clk(clk),.reset(reset),.we(Reg_enable[i]& write_enable),.DATA(DATA),.OUT(Reg_Out[i]));
     end
 endgenerate
 
-Decoder_4to16 dec (.IN(Destination_select),.OUT(Reg_enable));
+Decoder_5to32 dec (.IN(Destination_select),.OUT(Reg_enable));
 
-Mux_16to1 #(WIDTH) mux_0 (.select(Source_select_0),
+Mux_32to1 #(WIDTH) mux_0 (.select(Source_select_0),
 	.input_0 (Reg_Out[0]),
 	.input_1 (Reg_Out[1]),
 	.input_2 (Reg_Out[2]),
@@ -34,11 +34,27 @@ Mux_16to1 #(WIDTH) mux_0 (.select(Source_select_0),
 	.input_12(Reg_Out[12]),
 	.input_13(Reg_Out[13]),
 	.input_14(Reg_Out[14]),
-	.input_15(Reg_15),
+	.input_15(Reg_Out[15]),
+	.input_16(Reg_Out[16]),
+	.input_17(Reg_Out[17]),
+	.input_18(Reg_Out[18]),
+	.input_19(Reg_Out[19]),
+	.input_20(Reg_Out[20]),
+	.input_21(Reg_Out[21]),
+	.input_22(Reg_Out[22]),
+	.input_23(Reg_Out[23]),
+	.input_24(Reg_Out[24]),
+	.input_25(Reg_Out[25]),
+	.input_26(Reg_Out[26]),
+	.input_27(Reg_Out[27]),
+	.input_28(Reg_Out[28]),
+	.input_29(Reg_Out[29]),
+	.input_30(Reg_Out[30]),
+	.input_31(Reg_Out[31]),
 	.output_value(out_0)
     );
 	
-Mux_16to1 #(WIDTH) mux_1 (.select(Source_select_1),
+Mux_32to1 #(WIDTH) mux_1 (.select(Source_select_1),
 	.input_0 (Reg_Out[0]),
 	.input_1 (Reg_Out[1]),
 	.input_2 (Reg_Out[2]),
@@ -54,11 +70,27 @@ Mux_16to1 #(WIDTH) mux_1 (.select(Source_select_1),
 	.input_12(Reg_Out[12]),
 	.input_13(Reg_Out[13]),
 	.input_14(Reg_Out[14]),
-	.input_15(Reg_15),
+	.input_15(Reg_Out[15]),
+	.input_16(Reg_Out[16]),
+	.input_17(Reg_Out[17]),
+	.input_18(Reg_Out[18]),
+	.input_19(Reg_Out[19]),
+	.input_20(Reg_Out[20]),
+	.input_21(Reg_Out[21]),
+	.input_22(Reg_Out[22]),
+	.input_23(Reg_Out[23]),
+	.input_24(Reg_Out[24]),
+	.input_25(Reg_Out[25]),
+	.input_26(Reg_Out[26]),
+	.input_27(Reg_Out[27]),
+	.input_28(Reg_Out[28]),
+	.input_29(Reg_Out[29]),
+	.input_30(Reg_Out[30]),
+	.input_31(Reg_Out[31]),
 	.output_value(out_1)
     );
 	 
-Mux_16to1 #(WIDTH) mux_2 (.select(Debug_Source_select),
+Mux_32to1 #(WIDTH) mux_2 (.select(Debug_Source_select),
 	.input_0 (Reg_Out[0]),
 	.input_1 (Reg_Out[1]),
 	.input_2 (Reg_Out[2]),
@@ -74,7 +106,23 @@ Mux_16to1 #(WIDTH) mux_2 (.select(Debug_Source_select),
 	.input_12(Reg_Out[12]),
 	.input_13(Reg_Out[13]),
 	.input_14(Reg_Out[14]),
-	.input_15(Reg_15),
+	.input_15(Reg_Out[15]),
+	.input_16(Reg_Out[16]),
+	.input_17(Reg_Out[17]),
+	.input_18(Reg_Out[18]),
+	.input_19(Reg_Out[19]),
+	.input_20(Reg_Out[20]),
+	.input_21(Reg_Out[21]),
+	.input_22(Reg_Out[22]),
+	.input_23(Reg_Out[23]),
+	.input_24(Reg_Out[24]),
+	.input_25(Reg_Out[25]),
+	.input_26(Reg_Out[26]),
+	.input_27(Reg_Out[27]),
+	.input_28(Reg_Out[28]),
+	.input_29(Reg_Out[29]),
+	.input_30(Reg_Out[30]),
+	.input_31(Reg_Out[31]),
 	.output_value(Debug_out)
     );	 
 

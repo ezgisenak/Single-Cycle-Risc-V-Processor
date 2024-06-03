@@ -1,5 +1,5 @@
 module Register_reset#(
-     parameter WIDTH=8)
+     parameter WIDTH=32)
     (
 	  input  clk, reset,
 	  input	[WIDTH-1:0] DATA,

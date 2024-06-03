@@ -1,5 +1,5 @@
 module shifter #(
-     parameter WIDTH=8)
+     parameter WIDTH=32)
     (
 	  input [1:0]  control,
 	  input [4:0]  shamt,

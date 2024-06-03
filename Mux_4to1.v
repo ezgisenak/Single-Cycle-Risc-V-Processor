@@ -1,4 +1,4 @@
-module Mux_4to1 #(parameter WIDTH=4)
+module Mux_4to1 #(parameter WIDTH=32)
     (
 	  input [1:0] select,
 	  input [WIDTH-1:0] input_0, input_1, input_2, input_3,
