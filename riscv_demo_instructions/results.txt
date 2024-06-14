@@ -1,0 +1,27 @@
+_00: addi    x31, x0, 0x430        x31 <= 0x00000430 = 1072  
+_04: ori     x30, x0, -0x421       x30 <= 0xFFFFFBDF = 4294966239  
+_08: add     x29, x30, x31         x29 <= 0x0000000F = 15  
+_0C: sub     x28, x31, x30         x28 <= 0x00000851 = 2129  
+_10: and     x27, x31, x30         x27 <= 0x00000010 = 16  
+_14: xor     x26, x31, x30         x26 <= 0xFFFFFFEF = 4294967279  
+_18: srai    x1, x30, 24           x1 <= 0xFFFFFFFF = 4294967295  
+_1C: slli    x2, x30, 8            x2 <= 0xFFFBDF00 = 4294696704  
+_20: srl     x3, x30, x28          x3 <= 0x00007FFF = 32767  
+_24: slt     x4, x29, x31          x4 <= 0x00000001 = 1  
+_28: sltu    x5, x31, x29          x5 <= 0x00000000 = 0  
+_2C: slti    x6, x30, 0            x6 <= 0x00000001 = 1  
+_30: lui     x7, 0xABC             x7 <= 0x00ABC000 = 11255808  
+_34: auipc   x8, 0xCDE             x8 <= 0x00CDE034 = 13492276  
+_38: xorid   x9, x27, 0            x9 <= 0x000001A3 = 419  
+_3C: sw      x30, 4(x27)           DataMemory[23:20] <= 0xFFFFFBDF
+_40: lw      x10, 4(x27)           x10 <= 0xFFFFFBDF = 4294966239  
+_44: sh      x31, 8(x27)           DataMemory[25:24] <= 0x0430
+_48: lb      x11, 4(x27)           x11 <= 0xFFFFFFDF = 4294967263  
+_4C: lhu     x12, 7(x27)           x12 <= 0x000030FF = 12543  
+_50: bne     x30, x31, 12          PC <= 0x0000005C
+_5C: bge     x26, x29, 12          
+_60: bltu    x30, x29, 8           
+_64: addi    x0, x0, 0             
+_68: jal     x13, 4                x13 <= 0x0000006C = 108  PC <= 0x0000006C
+_6C: jalr    x14, 8(x13)           x14 <= 0x00000070 = 112  PC <= 0x00000074
+_74: jal     x0, -4                PC <= 0x00000070
